@@ -2,6 +2,15 @@ import styled from 'styled-components';
 import { device } from 'styles/device';
 
 export const Container = styled.div`
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 20%, #ffd836 40%),
+		#ffd836 url('./images/background.png') top center repeat-x;
+	color: #000;
+	-webkit-font-smoothing: antialiased;
+	width: 100%;
+	height: 100vh;
+`;
+
+export const Box = styled.div`
 	width: 100%;
 	padding-right: 15px;
 	padding-left: 15px;

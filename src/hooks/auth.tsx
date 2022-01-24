@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // import { useSnackbar } from 'notistack';
 import api from 'services/api';
@@ -36,6 +37,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 	// const { enqueueSnackbar } = useSnackbar();
 	const [loading, setLoading] = useState(false);
 	const { addToast } = useToast();
+	const navigate = useNavigate();
 
 	const [data, setData] = useState<AuthState>(() => {
 		const user = localStorage.getItem(userStorageKey);
@@ -56,6 +58,11 @@ export const AuthProvider: React.FC = ({ children }) => {
 				const response = await api.post('v1/client/login', { email, password });
 
 				const user = response.data.data;
+				// const user = {
+				// 	name: 'newerton',
+				// 	email: 'newerton.araujo@gmail.com',
+				// 	token: 'abcd',
+				// };
 				const { token } = user;
 
 				delete user.token;
@@ -71,6 +78,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 					type: 'success',
 					title: 'Login efetuado com sucesso',
 				});
+				navigate('/');
 			} catch (err) {
 				setLoading(false);
 				addToast({
@@ -79,7 +87,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 				});
 			}
 		},
-		[addToast]
+		[addToast, navigate]
 	);
 
 	const signOut = useCallback(() => {
