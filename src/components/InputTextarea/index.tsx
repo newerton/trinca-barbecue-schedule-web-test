@@ -15,15 +15,13 @@ type InputProps = FieldProps &
 	FieldAttributes<any> & {
 		label: string;
 		name: string;
-		type?: string;
 		errors: FormikErrors<FormikValues>;
 		touched: FormikTouched<FormikValues>;
 	};
 
-const InputText: React.FC<InputProps> = ({
+const InputTextarea: React.FC<InputProps> = ({
 	label,
 	name,
-	type = 'text',
 	errors,
 	touched,
 	...rest
@@ -32,7 +30,7 @@ const InputText: React.FC<InputProps> = ({
 		<S.Container>
 			<S.Label>{label}</S.Label>
 			<S.Input
-				type={type}
+				as="textarea"
 				name={name}
 				className={errors[name] && touched[name] ? 'is-invalid' : ''}
 				{...rest}
@@ -44,4 +42,4 @@ const InputText: React.FC<InputProps> = ({
 	);
 };
 
-export default InputText;
+export default InputTextarea;

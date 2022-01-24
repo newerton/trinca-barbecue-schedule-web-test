@@ -34,8 +34,6 @@ export const Input = styled(Field)`
 	border-radius: 2px;
 	width: 100%;
 	border: none;
-	width: 100%;
-	border: none;
 	padding: 15px 20px;
 	display: block;
 	margin-bottom: 6px;

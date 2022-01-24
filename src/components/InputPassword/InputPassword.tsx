@@ -7,6 +7,7 @@ import {
 	FormikTouched,
 	FieldProps,
 	FieldAttributes,
+	ErrorMessage,
 } from 'formik';
 
 import * as S from './styles';
@@ -55,9 +56,9 @@ const InputPassword: React.FC<InputProps> = ({
 			>
 				<FaEye />
 			</S.TooglePassword>
-			{errors[name] && touched[name] ? (
-				<div className="invalid-feedback">{errors[name]}</div>
-			) : null}
+			<ErrorMessage name={name}>
+				{(msg) => <span className="invalid-feedback">{msg}</span>}
+			</ErrorMessage>
 		</S.Container>
 	);
 };

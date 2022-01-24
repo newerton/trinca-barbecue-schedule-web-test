@@ -119,7 +119,7 @@ const Home = () => {
 				</S.Card>
 			</S.Col>
 			<S.Col>
-				<S.Card to="/barbercue/add">
+				<S.Card to="/barbecue/add">
 					<div className="add">
 						<div>
 							<img src={bbq} alt="adicionar" />

@@ -3,7 +3,7 @@ import { device } from 'styles/device';
 
 export const Container = styled.div`
 	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 20%, #fff 10%),
-		#ffd836 url('./images/background.png') top center repeat-x;
+		#ffd836 url('/images/background.png') top center repeat-x;
 	color: #000;
 	-webkit-font-smoothing: antialiased;
 	width: 100%;

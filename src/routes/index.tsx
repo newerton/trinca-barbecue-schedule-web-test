@@ -1,8 +1,7 @@
 import React from 'react';
 import { Routes as RoutesDOM, Route } from 'react-router-dom';
 
-// import RoutePrivate from 'routes';
-
+import BarbecueAdd from 'pages/Barbecue/Add';
 import Home from 'pages/Home';
 import Login from 'pages/Login';
 import NotFound from 'pages/NotFound';
@@ -26,6 +25,8 @@ const Routes = () => (
 					</RoutePrivate>
 				}
 			/>
+			<Route path="/barbecue/add" element={<BarbecueAdd />} />
+			<Route path="*" element={<NotFound />} />
 		</Route>
 	</RoutesDOM>
 );
