@@ -1,4 +1,4 @@
-import { Field } from 'formik';
+import DatePicker from 'react-datepicker';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -25,13 +25,13 @@ export const Label = styled.div`
 	margin-bottom: 16px;
 `;
 
-export const Input = styled(Field)`
+export const Input = styled(DatePicker)`
 	background-color: #000;
 	background: #ffffff;
 	box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.06);
 	border-radius: 2px;
 	width: 100%;
-	border: none;
+	border: 1px solid #eee;
 	padding: 15px 20px;
 	display: block;
 	margin-bottom: 6px;
