@@ -8,12 +8,6 @@ export default createGlobalStyle`
     outline: 0;
   }
 
-  body {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 20%, #FFD836 40%), #FFD836 url('./images/background.png') top center repeat-x;
-    color: #000;
-    -webkit-font-smoothing: antialiased;
-  }
-
   body, input, button {
     font-family: 'Raleway', serif;
     font-size: 14px;

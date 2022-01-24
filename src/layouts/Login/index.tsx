@@ -6,10 +6,10 @@ import { Outlet } from 'react-router-dom';
 
 import * as S from './styles';
 
-const Layout = () => {
+const LayoutLogin = () => {
 	return (
-		<>
-			<S.Container>
+		<S.Container>
+			<S.Box>
 				<div style={{ height: '90vh', margin: 0, padding: 0 }}>
 					<div
 						style={{
@@ -38,9 +38,9 @@ const Layout = () => {
 						</div>
 					</div>
 				</div>
-			</S.Container>
-		</>
+			</S.Box>
+		</S.Container>
 	);
 };
 
-export default Layout;
+export default LayoutLogin;
