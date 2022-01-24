@@ -55,17 +55,17 @@ export const AuthProvider: React.FC = ({ children }) => {
 		async ({ email, password }) => {
 			setLoading(true);
 			try {
-				// const response = await api.post('v1/client/login', { email, password });
+				const response = await api.post('v1/client/login', { email, password });
 
-				// const user = response.data.data;
-				const user = {
-					name: 'newerton',
-					email: 'newerton.araujo@gmail.com',
-					token: 'abcd',
-				};
+				const user = response.data.data;
+				// const user = {
+				// 	name: 'newerton',
+				// 	email: 'newerton.araujo@gmail.com',
+				// 	token: 'abcd',
+				// };
 				const { token } = user;
 
-				// delete user.token;
+				delete user.token;
 
 				api.defaults.headers.common.Authorization = `Bearer ${token}`;
 
