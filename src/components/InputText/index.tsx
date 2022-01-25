@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import {
 	FormikErrors,
@@ -28,13 +28,17 @@ const InputText: React.FC<InputProps> = ({
 	touched,
 	...rest
 }) => {
+	let hasError = errors[name] && touched[name];
+	if (errors['users'] && touched['users'] && errors['users'].length > 0) {
+		hasError = errors['users'].filter((item: any) => item == name);
+	}
 	return (
 		<S.Container>
 			<S.Label>{label}</S.Label>
 			<S.Input
 				type={type}
 				name={name}
-				className={errors[name] && touched[name] ? 'is-invalid' : ''}
+				className={hasError ? 'is-invalid' : ''}
 				{...rest}
 			/>
 			<ErrorMessage name={name}>
@@ -44,4 +48,4 @@ const InputText: React.FC<InputProps> = ({
 	);
 };
 
-export default InputText;
+export default memo(InputText);

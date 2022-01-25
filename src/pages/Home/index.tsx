@@ -1,134 +1,31 @@
-import React from 'react';
-import * as S from './styles';
-
-import users from './../../assets/icon_people.svg';
-import coin from './../../assets/icon_money.svg';
-import bbq from './../../assets/icon_bbq.svg';
+import Card from 'components/Card';
+import Row from 'components/Styles/Row';
+import Col from 'components/Styles/Col';
+import UsersInfo from 'components/UsersInfo';
+import MoneyInfo from 'components/MoneyInfo';
+import ButtonAddBarbecue from 'components/ButtonAddBarbecue';
 
 const Home = () => {
 	return (
-		<S.Row>
-			<S.Col>
-				<S.Card to="/barbercue/100">
-					<div className="header">
-						<h1>01/12</h1>
-						<h3>Niver do Gui</h3>
-					</div>
-					<div className="footer">
-						<div>
-							<div>
-								<img src={users} alt="total de participantes" />
-							</div>
-							<div>15</div>
+		<div className="container-home">
+			<Row>
+				<Col>
+					<Card backgroundColor="white" to="/barbecue/100" className="p-md">
+						<div className="mb-xxxl">
+							<div className="title-date">01/12</div>
+							<div className="title-event">Niver do Gui</div>
 						</div>
-						<div>
-							<div>
-								<img src={coin} alt="total de participantes" />
-							</div>
-							<div>R$ 280</div>
+						<div className="flex-horizontal">
+							<UsersInfo total="12" />
+							<MoneyInfo total={123.0} />
 						</div>
-					</div>
-				</S.Card>
-			</S.Col>
-			<S.Col>
-				<S.Card to="/barbercue/100">
-					<div className="header">
-						<h1>01/12</h1>
-						<h3>Niver do Gui</h3>
-					</div>
-					<div className="footer">
-						<div>
-							<div>
-								<img src={users} alt="total de participantes" />
-							</div>
-							<div>15</div>
-						</div>
-						<div>
-							<div>
-								<img src={coin} alt="total de participantes" />
-							</div>
-							<div>R$ 280</div>
-						</div>
-					</div>
-				</S.Card>
-			</S.Col>
-			<S.Col>
-				<S.Card to="/barbercue/100">
-					<div className="header">
-						<h1>01/12</h1>
-						<h3>Niver do Gui</h3>
-					</div>
-					<div className="footer">
-						<div>
-							<div>
-								<img src={users} alt="total de participantes" />
-							</div>
-							<div>15</div>
-						</div>
-						<div>
-							<div>
-								<img src={coin} alt="total de participantes" />
-							</div>
-							<div>R$ 280</div>
-						</div>
-					</div>
-				</S.Card>
-			</S.Col>
-			<S.Col>
-				<S.Card to="/barbercue/100">
-					<div className="header">
-						<h1>01/12</h1>
-						<h3>Niver do Gui</h3>
-					</div>
-					<div className="footer">
-						<div>
-							<div>
-								<img src={users} alt="total de participantes" />
-							</div>
-							<div>15</div>
-						</div>
-						<div>
-							<div>
-								<img src={coin} alt="total de participantes" />
-							</div>
-							<div>R$ 280</div>
-						</div>
-					</div>
-				</S.Card>
-			</S.Col>
-			<S.Col>
-				<S.Card to="/barbercue/100">
-					<div className="header">
-						<h1>01/12</h1>
-						<h3>Niver do Gui</h3>
-					</div>
-					<div className="footer">
-						<div>
-							<div>
-								<img src={users} alt="total de participatens" />
-							</div>
-							<div>15</div>
-						</div>
-						<div>
-							<div>
-								<img src={coin} alt="total de participantes" />
-							</div>
-							<div>R$ 280</div>
-						</div>
-					</div>
-				</S.Card>
-			</S.Col>
-			<S.Col>
-				<S.Card to="/barbecue/add">
-					<div className="add">
-						<div>
-							<img src={bbq} alt="adicionar" />
-						</div>
-						<div>Adicionar Churrasco</div>
-					</div>
-				</S.Card>
-			</S.Col>
-		</S.Row>
+					</Card>
+				</Col>
+				<Col>
+					<ButtonAddBarbecue backgroundColor="#F1F1F1" to="/barbecue/add" />
+				</Col>
+			</Row>
+		</div>
 	);
 };
 

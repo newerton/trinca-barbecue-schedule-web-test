@@ -1,6 +1,5 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Field, FieldArray, Form, Formik } from 'formik';
-import { useAuth } from 'hooks/auth';
 import * as Yup from 'yup';
 import Button from 'components/Button';
 import InputDate from 'components/InputDate';
@@ -12,6 +11,8 @@ import * as S from './styles';
 import api from 'services/api';
 import { useToast } from 'hooks/toast';
 import { Link } from 'react-router-dom';
+import Container from 'components/Styles/Container';
+import Row from 'components/Styles/Row';
 
 const schema = Yup.object({
 	event_date: Yup.string().nullable().required('Data do evento é obrigatório'),
@@ -59,9 +60,9 @@ const BarbecueAdd = () => {
 	);
 
 	return (
-		<S.Container>
+		<Container>
 			<div className="mb-lg">
-				<Link to="/">
+				<Link to="/" className="text-decoration-none">
 					<IoIosArrowBack /> Voltar
 				</Link>
 			</div>
@@ -77,7 +78,7 @@ const BarbecueAdd = () => {
 			>
 				{({ errors, touched, values }) => (
 					<Form>
-						<S.Row>
+						<Row>
 							<S.Col cols={1}>
 								<InputDate
 									label="Data do evento"
@@ -96,8 +97,8 @@ const BarbecueAdd = () => {
 									touched={touched}
 								/>
 							</S.Col>
-						</S.Row>
-						<S.Row>
+						</Row>
+						<Row>
 							<S.Col cols={3}>
 								<InputTextarea
 									label="Observação"
@@ -107,15 +108,15 @@ const BarbecueAdd = () => {
 									touched={touched}
 								/>
 							</S.Col>
-						</S.Row>
+						</Row>
 
 						<hr className="mt-sm mb-sm" />
 
-						<S.Row>
+						<Row>
 							<S.Col cols={3}>
 								<h2 className="mb-lg">Participantes</h2>
 							</S.Col>
-						</S.Row>
+						</Row>
 
 						<div className="mb-xxl">
 							<FieldArray
@@ -126,7 +127,7 @@ const BarbecueAdd = () => {
 										<div>
 											{users && users.length > 0
 												? users.map((user, index) => (
-														<S.Row key={index}>
+														<Row key={index}>
 															<S.Col cols={2}>
 																<InputText
 																	label="Nome do participante"
@@ -161,7 +162,7 @@ const BarbecueAdd = () => {
 																	Remover participante
 																</S.ButtonRemoveUsers>
 															</S.Col>
-														</S.Row>
+														</Row>
 												  ))
 												: null}
 											<S.ButtonAddUsers
@@ -185,7 +186,7 @@ const BarbecueAdd = () => {
 					</Form>
 				)}
 			</Formik>
-		</S.Container>
+		</Container>
 	);
 };
 

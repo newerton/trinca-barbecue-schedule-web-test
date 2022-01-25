@@ -1,7 +1,7 @@
-import React from 'react';
 import { Routes as RoutesDOM, Route } from 'react-router-dom';
 
 import BarbecueAdd from 'pages/Barbecue/Add';
+import BarbecueView from 'pages/Barbecue/View';
 import Home from 'pages/Home';
 import Login from 'pages/Login';
 import NotFound from 'pages/NotFound';
@@ -26,6 +26,7 @@ const Routes = () => (
 				}
 			/>
 			<Route path="/barbecue/add" element={<BarbecueAdd />} />
+			<Route path="/barbecue/:id" element={<BarbecueView />} />
 			<Route path="*" element={<NotFound />} />
 		</Route>
 	</RoutesDOM>
