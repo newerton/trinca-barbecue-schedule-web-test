@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { device } from 'styles/device';
 
 export const Row = styled.div`
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
 	padding: 0 4px;
-	position: relative;
-	top: -30px;
 
 	& > div > a {
 		background: #fff;
@@ -15,6 +14,22 @@ export const Row = styled.div`
 
 	& > div:last-child > a {
 		background: #f1f1f1;
+
+		@media ${device.mobile} {
+			padding: 21px 10px;
+		}
+
+		@media ${device.tablet} {
+			padding: 21px;
+		}
+
+		@media ${device.laptop} {
+			padding: 8px;
+		}
+
+		@media ${device.desktop} {
+			padding: 22px;
+		}
 	}
 `;
 

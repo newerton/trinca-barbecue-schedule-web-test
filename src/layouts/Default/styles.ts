@@ -21,6 +21,11 @@ export const Box = styled.div`
 	margin-right: auto;
 	margin-left: auto;
 
+	& main {
+		position: relative;
+		top: -30px;
+	}
+
 	@media ${device.mobile} {
 		width: 540px;
 	}

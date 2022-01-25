@@ -4,16 +4,6 @@ type RowProps = {
 	cols: number;
 };
 
-export const Container = styled.div`
-	margin: 0 auto;
-	max-width: 750px;
-	background: #fff;
-	padding: 20px;
-	position: relative;
-	top: -30px;
-	box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.06);
-`;
-
 export const Row = styled.div`
 	width: 100%;
 	display: flex;
