@@ -36,7 +36,7 @@ export const Col = styled.div<RowProps>`
 			max-width: 100%;
 		`}
 
-	& > .total {
+	& > div > .total {
 		font-family: Raleway;
 		font-style: normal;
 		font-weight: bold;

@@ -1,17 +1,16 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// import { useSnackbar } from 'notistack';
 import api from 'services/api';
 import { useToast } from './toast';
 
-interface Client {
+interface User {
 	name: string;
 	email: string;
 }
 
 interface AuthState {
-	user: Client;
+	user: User;
 	token?: string;
 }
 
@@ -23,7 +22,7 @@ interface UserCredentials {
 interface AuthContextProps {
 	loading: boolean;
 	signed: boolean;
-	user: Client;
+	user: User;
 	signIn(credentials: UserCredentials): Promise<void>;
 	signOut(): void;
 }
@@ -55,14 +54,9 @@ export const AuthProvider: React.FC = ({ children }) => {
 		async ({ email, password }) => {
 			setLoading(true);
 			try {
-				const response = await api.post('v1/client/login', { email, password });
+				const response = await api.post('v1/users/login', { email, password });
 
-				const user = response.data.data;
-				// const user = {
-				// 	name: 'newerton',
-				// 	email: 'newerton.araujo@gmail.com',
-				// 	token: 'abcd',
-				// };
+				const user = response.data;
 				const { token } = user;
 
 				delete user.token;
@@ -80,6 +74,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 				});
 				navigate('/');
 			} catch (err) {
+				console.log(err);
 				setLoading(false);
 				addToast({
 					type: 'error',

@@ -4,7 +4,7 @@ import * as S from './styles';
 import users from './../../assets/icon_people.svg';
 
 type UsersInfoProps = {
-	total: string;
+	total: number;
 };
 
 const UsersInfo: React.FC<UsersInfoProps> = ({ total }) => {

@@ -7,6 +7,7 @@ import {
 	FieldProps,
 	FieldAttributes,
 	ErrorMessage,
+	useField,
 } from 'formik';
 
 import * as S from './styles';
@@ -26,12 +27,15 @@ const InputTextarea: React.FC<InputProps> = ({
 	touched,
 	...rest
 }) => {
+	const [field, meta] = useField(name);
 	return (
 		<S.Container>
 			<S.Label>{label}</S.Label>
 			<S.Input
 				as="textarea"
 				name={name}
+				value={meta.value}
+				onChange={field.onChange}
 				className={errors[name] && touched[name] ? 'is-invalid' : ''}
 				{...rest}
 			/>

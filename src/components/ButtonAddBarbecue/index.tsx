@@ -6,16 +6,16 @@ import Card from 'components/Card';
 import bbq from './../../assets/icon_bbq.svg';
 
 interface ButtonAddBarbecueProps {
-	backgroundColor: string;
+	backgroundcolor: string;
 	to: string | Partial<Path>;
 }
 
 const ButtonAddBarbecue: React.FC<ButtonAddBarbecueProps> = ({
-	backgroundColor,
+	backgroundcolor,
 	to,
 }) => {
 	return (
-		<Card backgroundColor={backgroundColor} to={to} className="pt-md pb-md">
+		<Card backgroundcolor={backgroundcolor} to={to}>
 			<S.Container>
 				<S.Image>
 					<img src={bbq} alt="adicionar" />
