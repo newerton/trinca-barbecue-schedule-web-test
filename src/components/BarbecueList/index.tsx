@@ -1,31 +1,27 @@
 import BarbecueListItem from 'components/BarbecueListItem';
 
-const users = [
-	{
-		id: '10',
-		name: 'Newerton Varga de Araujo',
-		value: '123.00',
-		paid: true,
-	},
-	{
-		id: '20',
-		name: 'Patricia de Oliveira Araujo',
-		value: '321.00',
-		paid: false,
-	},
-];
+type ItemProps = {
+	items: Array<{
+		id: string;
+		name: string;
+		amount: number;
+		has_beer: boolean;
+		paid: boolean;
+	}>;
+};
 
-const BarbecueList = () => {
+const BarbecueList = ({ items }: ItemProps) => {
 	return (
 		<>
-			{users.map((user) => {
+			{items.map((item) => {
 				return (
 					<BarbecueListItem
-						key={user.id}
-						id={user.id}
-						name={user.name}
-						value={user.value}
-						paid={user.paid}
+						key={item.id}
+						id={item.id}
+						name={item.name}
+						amount={item.amount}
+						has_beer={item.has_beer}
+						paid={item.paid}
 					/>
 				);
 			})}

@@ -29,8 +29,13 @@ const InputText: React.FC<InputProps> = ({
 	...rest
 }) => {
 	let hasError = errors[name] && touched[name];
-	if (errors['users'] && touched['users'] && errors['users'].length > 0) {
-		hasError = errors['users'].filter((item: any) => item == name);
+	if (
+		name.startsWith('items.') &&
+		errors['items'] &&
+		touched['items'] &&
+		errors['items'].length > 0
+	) {
+		hasError = errors['items'].filter((item: any) => item == name);
 	}
 	return (
 		<S.Container>

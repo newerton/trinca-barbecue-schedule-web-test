@@ -4,19 +4,19 @@ import * as S from './styles';
 import { Path } from 'react-router-dom';
 
 type ColProps = HTMLAttributes<HTMLElement> & {
-	backgroundColor: string;
+	backgroundcolor: string;
 	to: string | Partial<Path>;
 	children: React.ReactNode;
 };
 
 const Col: React.FC<ColProps> = ({
-	backgroundColor,
+	backgroundcolor,
 	to,
 	children,
 	...rest
 }) => {
 	return (
-		<S.Card backgroundColor={backgroundColor} to={to} {...rest}>
+		<S.Card backgroundcolor={backgroundcolor} to={to} {...rest}>
 			{children}
 		</S.Card>
 	);

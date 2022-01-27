@@ -13,11 +13,12 @@ import { useToast } from 'hooks/toast';
 import { Link } from 'react-router-dom';
 import Container from 'components/Styles/Container';
 import Row from 'components/Styles/Row';
+import { useNavigate } from 'react-router-dom';
 
 const schema = Yup.object({
-	event_date: Yup.string().nullable().required('Data do evento é obrigatório'),
-	description: Yup.string().max(256).required('Descrição é obrigatório'),
-	users: Yup.array().of(
+	date: Yup.string().nullable().required('Data do evento é obrigatório'),
+	title: Yup.string().max(256).required('Descrição é obrigatório'),
+	items: Yup.array().of(
 		Yup.object().shape({
 			name: Yup.string().required('Nome é obrigatório'),
 			amount: Yup.string().required('Valor é obrigatório'),
@@ -26,28 +27,43 @@ const schema = Yup.object({
 });
 
 type SignInFormData = {
-	event_date: string;
+	date: string;
+	title: string;
 	description: string;
-	observation: string;
-	users: Array<{ name: string; amount: string }>;
+	items: Array<{
+		name: string;
+		amount: string;
+		has_beer?: any;
+	}>;
 };
 
 const BarbecueAdd = () => {
 	const [loading, setLoading] = useState(false);
 	const { addToast } = useToast();
+	const navigate = useNavigate();
 
 	const handleSubmit = useCallback(
 		async (data: SignInFormData, { resetForm }) => {
 			setLoading(true);
 			try {
-				await api.post(`v1/barbecue`, { ...data });
+				const newItems = data.items.map((item) => {
+					const has_beer = item.has_beer && item.has_beer[0] === '1';
+					delete item.has_beer;
+					return {
+						...item,
+						...(has_beer ? { has_beer: true } : {}),
+					};
+				});
+				data.items = newItems;
+				await api.post(`v1/events`, { ...data });
 
 				addToast({
 					type: 'success',
-					title: 'Erro ao cadastrar seu evento, tente novamente',
+					title: 'Cadastro efetuado com sucesso',
 				});
 				resetForm();
 				setLoading(false);
+				navigate('/');
 			} catch (err) {
 				addToast({
 					type: 'error',
@@ -56,7 +72,7 @@ const BarbecueAdd = () => {
 				setLoading(false);
 			}
 		},
-		[addToast]
+		[addToast, navigate]
 	);
 
 	return (
@@ -68,10 +84,10 @@ const BarbecueAdd = () => {
 			</div>
 			<Formik
 				initialValues={{
-					event_date: '',
+					date: '',
+					title: '',
 					description: '',
-					observation: '',
-					users: [{ name: '', amount: '' }],
+					items: [{ name: '', amount: '' }],
 				}}
 				validationSchema={schema}
 				onSubmit={handleSubmit}
@@ -83,7 +99,7 @@ const BarbecueAdd = () => {
 								<InputDate
 									label="Data do evento"
 									placeholder="Data do evento"
-									name="event_date"
+									name="date"
 									errors={errors}
 									touched={touched}
 								/>
@@ -92,7 +108,7 @@ const BarbecueAdd = () => {
 								<InputText
 									label="Descrição"
 									placeholder="Descrição"
-									name="description"
+									name="title"
 									errors={errors}
 									touched={touched}
 								/>
@@ -103,7 +119,7 @@ const BarbecueAdd = () => {
 								<InputTextarea
 									label="Observação"
 									placeholder="Observação"
-									name="observation"
+									name="description"
 									errors={errors}
 									touched={touched}
 								/>
@@ -120,19 +136,19 @@ const BarbecueAdd = () => {
 
 						<div className="mb-xxl">
 							<FieldArray
-								name="users"
+								name="items"
 								render={(arrayHelpers) => {
-									const users = values.users;
+									const items = values.items;
 									return (
 										<div>
-											{users && users.length > 0
-												? users.map((user, index) => (
+											{items && items.length > 0
+												? items.map((user, index) => (
 														<Row key={index}>
 															<S.Col cols={2}>
 																<InputText
 																	label="Nome do participante"
 																	placeholder="Nome"
-																	name={`users.${index}.name`}
+																	name={`items.${index}.name`}
 																	errors={errors}
 																	touched={touched}
 																/>
@@ -141,7 +157,7 @@ const BarbecueAdd = () => {
 																<InputText
 																	label="Valor"
 																	placeholder="Valor"
-																	name={`users.${index}.amount`}
+																	name={`items.${index}.amount`}
 																	type="number"
 																	errors={errors}
 																	touched={touched}
@@ -149,7 +165,7 @@ const BarbecueAdd = () => {
 																<label>
 																	<Field
 																		type="checkbox"
-																		name={`users.${index}.has_beer`}
+																		name={`items.${index}.has_beer`}
 																		value="1"
 																		className="mr-sm mb-md"
 																	/>
